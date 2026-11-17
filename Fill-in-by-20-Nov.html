@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fill in by 20 Nov — Kenneth WONG</title>
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#f5f7fa;color:#17202e;font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
+  .wrap{max-width:860px;margin:0 auto;padding:28px 20px 70px}
+  header{background:#0e6b5c;color:#fff;border-radius:14px;padding:22px 24px;margin-bottom:20px}
+  header h1{margin:0 0 6px;font-size:26px;line-height:1.2}
+  header p{margin:0;color:#d6efe9;font-size:15px}
+  .deadline{display:inline-block;background:#ffe061;color:#3d3300;font-weight:700;padding:4px 10px;border-radius:6px;margin-top:12px;font-size:14px}
+  .summary{background:#fff;border:1px solid #e0e7ef;border-radius:12px;padding:16px 18px;margin-bottom:22px;font-size:15px}
+  .summary strong{color:#0e6b5c}
+  .summary ul{margin:8px 0 0;padding-left:20px}
+  .bar{height:8px;background:#e6ecf3;border-radius:99px;overflow:hidden;margin-top:14px}
+  .bar span{display:block;height:100%;width:0;background:#0e6b5c;transition:width .25s}
+  .count{font-size:13px;color:#5b6b80;margin-top:6px}
+
+  .slot{background:#fff;border:1px solid #e0e7ef;border-radius:12px;padding:18px 20px;margin-bottom:16px}
+  .slot h2{font-size:16px;margin:0 0 4px}
+  .where{font-size:13.5px;color:#0e6b5c;font-weight:600;margin:0 0 12px}
+  .where span{color:#5b6b80;font-weight:400}
+  .paste{background:#f8fbfa;border:1px solid #d5e7e1;border-left:4px solid #0e6b5c;border-radius:8px;padding:12px 14px;font-size:15px;white-space:pre-wrap}
+  .paste p{margin:0 0 .6em}
+  .paste p:last-child{margin-bottom:0}
+  .paste ul{margin:.2em 0 .6em;padding-left:1.2em}
+  .actions{display:flex;gap:10px;align-items:center;margin-top:12px;flex-wrap:wrap}
+  button{font:inherit;font-weight:600;font-size:14px;border:0;border-radius:8px;padding:8px 14px;cursor:pointer}
+  .copy{background:#0e6b5c;color:#fff}
+  .copy:hover{background:#0b574b}
+  .copy.done{background:#2f9e6a}
+  label.tick{display:flex;gap:8px;align-items:center;font-size:13.5px;color:#5b6b80;cursor:pointer;margin-left:auto}
+  label.tick input{width:17px;height:17px;accent-color:#0e6b5c}
+  .note{font-size:13.5px;color:#7a5c00;background:#fff8e6;border:1px solid #f0dda8;border-radius:8px;padding:8px 10px;margin-top:10px}
+  .optional{border-style:dashed}
+  .optional .where{color:#7a5c00}
+  .email{background:#eef4ff;border:1px solid #cfdcf7;border-radius:12px;padding:18px 20px;margin-top:24px}
+  .email h2{font-size:16px;margin:0 0 6px;color:#20376e}
+  .email p{margin:0 0 10px;font-size:14.5px;color:#33445c}
+  .email .paste{background:#fff;border-color:#cfdcf7;border-left-color:#2f5fd0}
+  footer{color:#5b6b80;font-size:13px;margin-top:26px;text-align:center}
+  @media print{
+    body{background:#fff}
+    .wrap{max-width:none;padding:0}
+    header{background:#fff;color:#000;border-bottom:2px solid #0e6b5c;border-radius:0;padding:0 0 12px}
+    header p{color:#333}
+    .deadline{background:#eee;color:#000}
+    .actions,footer{display:none}
+    .slot,.summary,.email{break-inside:avoid;page-break-inside:avoid;box-shadow:none}
+    .paste{background:#fafafa}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>Fill in by 20 November 2026</h1>
+    <p>WONG Ho Kwan Kenneth · 2026/2027 appraisal · Appraisee copy</p>
+    <div class="deadline">Due: Friday 20 November 2026</div>
+  </header>
+
+  <div class="summary">
+    <p><strong>HR wants your parts done by 20 Nov.</strong> That means every box that belongs to you:</p>
+    <ul>
+      <li><strong>Parts A–G</strong> — your self-ratings and written comments.</li>
+      <li><strong>Parts H, I, J</strong> — your <em>self-reflections only</em>.</li>
+    </ul>
+    <p style="margin-top:10px"><strong>Not yours:</strong> attendance data (HR), the ratings in H–J (department heads, updated before your meeting), Parts K–L (appraisers and Chief Principal).</p>
+    <p style="margin-top:10px">Your B–D ratings are already done (all 3s). Part A is on the separate L&amp;T Evaluation Form. What is left is the 11 text slots below, plus one optional upgrade.</p>
+    <div class="bar"><span id="bar"></span></div>
+    <div class="count" id="count">Progress</div>
+  </div>
+
+  <!-- 1 -->
+  <section class="slot">
+    <h2>1 · Part E (2) — Whole-school / joint-school activities</h2>
+    <p class="where">Paste into: <span>2a · Part E · the wide blank box under “Please reflect on your participation in the whole-school / ELCHK Joint school activities”</span></p>
+    <div class="paste" id="s1">During the 2026/2027 contract period I took part in the whole-school activities and ELCHK joint-school activities arranged for staff, including staff development sessions and school-wide events. Taking part alongside colleagues from other schools in the group gave me a wider view of how different schools approach teaching and learning, and I brought ideas back into my own classroom and into the Learning Technologies team. I also supported school events by taking on duties as assigned and by helping to prepare students for external activities. These occasions reminded me that my work is part of a larger community, and I would like to contribute more actively to joint-school initiatives in the coming year.</div>
+    <div class="note">If you can name a specific event you attended, replace “staff development sessions and school-wide events” with it. Only keep this if you did attend at least one such event.</div>
+    <div class="actions">
+      <button class="copy" data-target="s1">Copy text</button>
+      <label class="tick"><input type="checkbox" data-slot="s1"> Pasted</label>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section class="slot">
+    <h2>2 · Part E (3) — Major Concern 1: Wellness and SEL</h2>
+    <p class="where">Paste into: <span>2a · Part E (3) table · row “1) Nurture wellness in our community through social-emotional learning” · Self Reflection column</span></p>
+    <div class="paste" id="s2">As 9GK homeroom teacher, I treated student wellbeing as a condition for learning rather than an add-on. I used morning devotion and regular check-ins to notice changes in students’ mood and engagement early, and followed up individually with students who seemed withdrawn, anxious or disengaged. Where a concern was beyond my role, I worked with the school counsellor, the Year Level Head and parents so that the student received consistent support. I also tried to build a class culture in which students look out for one another, by encouraging them to raise concerns about classmates and by dealing with conflict openly rather than avoiding it. The area I want to develop next is making these check-ins more systematic, so that quieter students are not missed.</div>
+    <div class="actions">
+      <button class="copy" data-target="s2">Copy text</button>
+      <label class="tick"><input type="checkbox" data-slot="s2"> Pasted</label>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section class="slot">
+    <h2>3 · Part E (3) — Major Concern 2: Personalised learning</h2>
+    <p class="where">Paste into: <span>2a · Part E (3) table · row “2) Foster personalised learning…” · <strong>replace</strong> the broken sentence “Most of the AI personalised My next objective is to attempt”</span></p>
+    <div class="paste" id="s3">Personalised learning is the area where I have contributed most this year. I developed subject-specific, gamified and multi-modal lesson content with systematic scaffolding, set within a unified MYP assessment system and supported by AI. An AI marking system gives students immediate, personalised feedback on class activities in every lesson, while a live dashboard lets me see each student’s progress and adjust the pace, grouping or level of support within the lesson rather than waiting for the next test. Across my classes, over 90% of students completed and passed their lesson activities, and the system has reduced teachers’ marking workload significantly. My next objective is to extend the platform to more units and to document it so that colleagues can reuse it without starting from scratch.</div>
+    <div class="actions">
+      <button class="copy" data-target="s3">Copy text</button>
+      <label class="tick"><input type="checkbox" data-slot="s3"> Pasted</label>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section class="slot">
+    <h2>4 · Part E (3) — Major Concern 3: International-mindedness</h2>
+    <p class="where">Paste into: <span>2a · Part E (3) table · row “3) Foster a culture of international-mindedness” · Self Reflection column</span></p>
+    <div class="paste" id="s4">International-mindedness is built into the MYP and PYP frameworks I teach, and I tried to make it concrete rather than theoretical. In aerospace and design units, students examined how technology is developed and used in different parts of the world, and considered whose needs a design serves. Beyond the classroom, PYP students took part in the Cyberport digital citizenship programme, where they thought about responsible participation in an online world that does not stop at national borders. Students also worked on issues with a global dimension through the CLP Low-Carbon Energy-Saving Invention Competition and the Hong Kong Science Fair, where they had to explain why their solutions matter beyond their own school. Next year I would like to add an explicit international comparison to one unit and, if possible, link with a class outside Hong Kong.</div>
+    <div class="actions">
+      <button class="copy" data-target="s4">Copy text</button>
+      <label class="tick"><input type="checkbox" data-slot="s4"> Pasted</label>
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section class="slot">
+    <h2>5 · Part E (4) — New initiatives</h2>
+    <p class="where">Paste into: <span>2a · Part E (4) · the wide blank box under “Please write down your contributions to new initiatives beyond the three major concerns”</span></p>
+    <div class="paste" id="s5">Beyond the three major concerns, I introduced several initiatives that did not exist before this year:
+
+• A classroom AI activity and assessment platform (luacas.pages.dev) that gives students immediate, personalised feedback and gives me live progress data during lessons.
+
+• A gamified learning hub for ECA (la-webappdev.khkwong.workers.dev) that applies ludology and the Octalysis framework to increase student motivation.
+
+• A digital citizenship programme that supported PYP students in attending Cyberport’s programme.
+
+• A competition pathway that recruited and supported PYP students for the 4th CLP Low-Carbon Energy-Saving Invention Competition (lowcarboncomp.netlify.app) and the 4th Hong Kong Science Fair (hksfpyp.netlify.app/hksf-playlist-ideas).
+
+These initiatives reach beyond my own classroom: they reduce workload for colleagues, create resources that can be reused, and give students opportunities they would not otherwise have had. I would like to consolidate them next year rather than keep adding new ones, so that more colleagues can use them confidently.</div>
+    <div class="actions">
+      <button class="copy" data-target="s5">Copy text</button>
+      <label class="tick"><input type="checkbox" data-slot="s5"> Pasted</label>
+    </div>
+  </section>
+
+  <!-- 6 -->
+  <section class="slot">
+    <h2>6 · Part F (1) and (2) — Contract length and future interests</h2>
+    <p class="where">Paste into: <span>2a · Part F · left cell under “1) Desired Length of Continuing Service” and right cell under “(2) Please describe your future work interests at LA”</span></p>
+    <div class="note" style="margin:0 0 10px">Choose <strong>one</strong> length line. If you want 2 years, use the first; if 1 year, use the second.</div>
+    <div class="paste" id="s6a">2 years (16 August 2027 to 15 August 2029)</div>
+    <div class="actions">
+      <button class="copy" data-target="s6a">Copy 2-year line</button>
+    </div>
+    <div class="paste" id="s6b" style="margin-top:10px">1 year (16 August 2027 to 15 August 2028)</div>
+    <div class="actions">
+      <button class="copy" data-target="s6b">Copy 1-year line</button>
+    </div>
+    <div class="paste" id="s6c" style="margin-top:12px">I would like to continue teaching Aerospace, STEAM and Design across the MYP and PYP, and to keep contributing to the Learning Technologies team and to a homeroom. I am particularly interested in developing AI-supported, gamified learning resources, supporting colleagues in using them, and taking on a larger curriculum or mentoring role. I would welcome the chance to teach a wider range of year levels and to coordinate a competition or digital learning programme.</div>
+    <div class="actions">
+      <button class="copy" data-target="s6c">Copy interests paragraph</button>
+      <label class="tick"><input type="checkbox" data-slot="s6"> Pasted</label>
+    </div>
+  </section>
+
+  <!-- 7 -->
+  <section class="slot">
+    <h2>7 · Part F (3) — Goals for professional growth</h2>
+    <p class="where">Paste into: <span>2a · Part F · the blank box under “3) Describe any specific goals you have for your own future professional growth and development”</span></p>
+    <div class="paste" id="s7">1. Complete an IB MYP Category 1 workshop in Design, and apply the planning and assessment approaches directly to my Aerospace units.
+
+2. Strengthen behaviour management by using a consistent routine for gaining silence, a seating plan that brings passive students forward, and by learning every student’s name early in the year.
+
+3. Gain first-aid certification.
+
+4. Move from using AI tools in my own classroom to supporting colleagues across the school, by documenting the platform and running a short staff session on how to use it.
+
+5. Contribute one fully documented, shared unit to the department so that it can be taught by someone else without my support.</div>
+    <div class="actions">
+      <button class="copy" data-target="s7">Copy text</button>
+      <label class="tick"><input type="checkbox" data-slot="s7"> Pasted</label>
+    </div>
+  </section>
+
+  <!-- 8 -->
+  <section class="slot">
+    <h2>8 · Part F (4) — Plan, one row per major concern</h2>
+    <p class="where">Paste into: <span>2a · Part F (4) table · the three blank Plan cells</span></p>
+
+    <p style="font-size:14px;font-weight:600;margin:0 0 6px">Row 1 — Nurture wellness through SEL</p>
+    <div class="paste" id="s8a">Keep a short weekly wellbeing check-in in homeroom and record concerns so that follow-up is consistent; work with the counsellor and Year Level Head on any student who needs more than classroom support; give students a regular, structured opportunity to raise concerns about the class as a whole.</div>
+    <div class="actions"><button class="copy" data-target="s8a">Copy row 1</button></div>
+
+    <p style="font-size:14px;font-weight:600;margin:16px 0 6px">Row 2 — Foster personalised learning</p>
+    <div class="paste" id="s8b">Extend the AI lesson and assessment platform to at least two more units; collect completion and attainment data to check whether it is improving learning, not just engagement; document the platform and run one staff session so colleagues can use it.</div>
+    <div class="actions"><button class="copy" data-target="s8b">Copy row 2</button></div>
+
+    <p style="font-size:14px;font-weight:600;margin:16px 0 6px">Row 3 — Foster a culture of international-mindedness</p>
+    <div class="paste" id="s8c">Add an explicit international comparison to one aerospace or design unit; run the Cyberport digital citizenship programme with a second year group; enter students for at least one competition with a global dimension.</div>
+    <div class="actions">
+      <button class="copy" data-target="s8c">Copy row 3</button>
+      <label class="tick"><input type="checkbox" data-slot="s8"> Pasted</label>
+    </div>
+  </section>
+
+  <!-- 9 -->
+  <section class="slot">
+    <h2>9 · Part H (1) — Departmental role self-reflection</h2>
+    <p class="where">Paste into: <span>2b · Part H (1) · the Self-reflection column next to “2026/2027 STEAM (Aerospace) / Learning Technologies – Member (PYP)”</span></p>
+    <div class="paste" id="s9">As a member of the STEAM (Aerospace) team and the PYP Learning Technologies team, I planned and taught aerospace and design units with a focus on conceptual understanding and the design cycle. I built digital resources — including interactive lesson content, an AI marking and feedback system, and a live progress dashboard — and made them available to colleagues rather than keeping them within my own classroom. Within the Learning Technologies team I contributed to discussions on how technology is used across the PYP and supported colleagues when they had technical or practical questions.
+
+I met planning and submission deadlines, raised problems early rather than at the deadline, and tried to be useful in meetings by bringing working examples rather than opinions. The part I would do differently is documentation: I built quickly, and some resources were not written up in a way that made them easy for others to reuse. Next year I would like to lead one unit within the team, document the platform properly, and support a colleague in using it independently.</div>
+    <div class="actions">
+      <button class="copy" data-target="s9">Copy text</button>
+      <label class="tick"><input type="checkbox" data-slot="s9"> Pasted</label>
+    </div>
+  </section>
+
+  <!-- 10 -->
+  <section class="slot">
+    <h2>10 · Part I (1) — Homeroom 9GK self-reflection</h2>
+    <p class="where">Paste into: <span>2b · Part I (1) · the Self-reflection column next to “2026/2027 9GK – Homeroom Teacher”</span></p>
+    <div class="paste" id="s10">As 9GK homeroom teacher I set up consistent routines for morning devotion, attendance, homework and class meetings, because a predictable start to the day makes everything else easier. I tried to know each student well enough to notice when something had changed, and to follow up quietly rather than waiting for a problem to become visible. When students had difficulties — with work, with each other, or at home — I spoke with them individually, involved the counsellor or Year Level Head where needed, and kept parents informed so that home and school were responding in the same way.
+
+I also worked on class identity: students took on class responsibilities, we dealt with conflict openly, and I tried to make it clear that the class was something they were building together rather than something imposed on them. Attendance and punctuality were followed up consistently. The area I most want to improve is communication with parents — I would like to make contact earlier and more regularly, including when things are going well, rather than mainly when there is an issue. Next year I plan to set a simple schedule for parent contact so that it does not depend on finding time.</div>
+    <div class="actions">
+      <button class="copy" data-target="s10">Copy text</button>
+      <label class="tick"><input type="checkbox" data-slot="s10"> Pasted</label>
+    </div>
+  </section>
+
+  <!-- 11 -->
+  <section class="slot">
+    <h2>11 · Part J (7) — Self-reflection on the professional ladder</h2>
+    <p class="where">Paste into: <span>2c · Part J (7) · the blank box under “Self-reflection on the professional ladder”</span></p>
+    <div class="paste" id="s11">The newly-joined teacher programme gave me a structured start to my career. The 30 hours of core training — on teachers’ professional identity, the T-standard+ and the Constitution, Basic Law and National Security Education — helped me understand the expectations of the profession and the wider context in which schools work, and my 60 hours of electives allowed me to focus on the areas most relevant to my teaching.
+
+I can see the T-standard+ domains in my daily work: my AI platform and live progress data support student-centred learning, and the resources I have built and shared reflect a commitment to professional growth beyond my own classroom. My next steps are to complete an IB MYP workshop, gain first-aid certification and take on a wider role in learning technologies. As I move into my second year, I want to shift from building things myself to helping colleagues use them, and to document what I have made so that it outlasts my own classroom.</div>
+    <div class="actions">
+      <button class="copy" data-target="s11">Copy text</button>
+      <label class="tick"><input type="checkbox" data-slot="s11"> Pasted</label>
+    </div>
+  </section>
+
+  <!-- optional -->
+  <section class="slot optional">
+    <h2>Optional · Part E (1) — Areas for improvement</h2>
+    <p class="where">Replace the current three-item list <span>· 2a · Part E (1) · Areas for improvement</span></p>
+    <div class="paste" id="s12">Behaviour management is my clearest development area. I will wait for silence using a consistent routine before giving instructions rather than speaking over the class; use a seating plan and targeted questioning to bring passive students at the back into the lesson; and learn every student’s name within the first month. I will ask Mr Henderson to observe one lesson later in the year and give me feedback on these three points.</div>
+    <div class="actions">
+      <button class="copy" data-target="s12">Copy text</button>
+      <label class="tick"><input type="checkbox" data-slot="s12"> Pasted</label>
+    </div>
+  </section>
+
+  <div class="email">
+    <h2>When you are done — email HR</h2>
+    <p>HR requires you to tell them when your parts are complete. Send this:</p>
+    <div class="paste" id="s13">Dear HR,
+
+I have completed my self-rating (Parts A–G) and my self-reflections in Parts H, I and J. Please let me know if anything else is required from me before the appraisal meeting.
+
+Best regards,
+WONG Ho Kwan Kenneth</div>
+    <div class="actions">
+      <button class="copy" data-target="s13">Copy email</button>
+    </div>
+  </div>
+
+  <footer>Ticks are saved in this browser. Text is yours to edit — change anything that is not accurate.</footer>
+</div>
+
+<script>
+(function () {
+  var KEY = 'kw-paste-20nov';
+  var done = {};
+  try { done = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) {}
+
+  var ticks = [].slice.call(document.querySelectorAll('label.tick input'));
+  var bar = document.getElementById('bar');
+  var count = document.getElementById('count');
+
+  function paint() {
+    var n = ticks.filter(function (t) { return t.checked; }).length;
+    bar.style.width = (n / ticks.length * 100) + '%';
+    count.textContent = n + ' of ' + ticks.length + ' done';
+  }
+
+  ticks.forEach(function (t) {
+    if (done[t.dataset.slot]) t.checked = true;
+    t.addEventListener('change', function () {
+      done[t.dataset.slot] = t.checked;
+      try { localStorage.setItem(KEY, JSON.stringify(done)); } catch (e) {}
+      paint();
+    });
+  });
+  paint();
+
+  function copyText(text, btn) {
+    var ok = function () {
+      var old = btn.textContent;
+      btn.textContent = 'Copied';
+      btn.classList.add('done');
+      setTimeout(function () { btn.textContent = old; btn.classList.remove('done'); }, 1500);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(ok).catch(function () { fallback(text, ok); });
+    } else {
+      fallback(text, ok);
+    }
+  }
+
+  function fallback(text, ok) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); ok(); } catch (e) {}
+    document.body.removeChild(ta);
+  }
+
+  document.querySelectorAll('.copy').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var el = document.getElementById(btn.dataset.target);
+      if (el) copyText(el.innerText.trim(), btn);
+    });
+  });
+})();
+</script>
+</body>
+</html>
