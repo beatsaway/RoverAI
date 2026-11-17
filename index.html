@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Drive the Moon — a lunar rover lesson</title>
+<meta name="description" content="A short lesson about lunar rovers: what they are, what makes driving on the Moon hard, a 3D rover drive, and a satellite route-planning task.">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#f7f4ee">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%230d6b74'/%3E%3Ccircle cx='16' cy='16' r='8' fill='none' stroke='%23fff' stroke-width='2'/%3E%3Ccircle cx='22' cy='10' r='2' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to lesson</a>
+
+<header class="topbar">
+  <button class="brand" data-go="brief" aria-label="Drive the Moon, back to the start">
+    <span class="brand-mark" aria-hidden="true">
+      <svg viewBox="0 0 32 32" width="24" height="24"><circle cx="16" cy="16" r="11" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M9 9a9.9 9.9 0 0 1 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="21.5" cy="10" r="2.2" fill="currentColor"/></svg>
+    </span>
+    <span class="brand-title">Drive the Moon</span>
+  </button>
+
+  <nav class="steps" aria-label="Lesson sections">
+    <button class="step" data-go="brief"><i>01</i><span>Start</span></button>
+    <button class="step" data-go="starter"><i>02</i><span>Challenges</span></button>
+    <button class="step" data-go="drive"><i>03</i><span>Drive</span></button>
+    <button class="step" data-go="recon"><i>04</i><span>Plan</span></button>
+    <button class="step" data-go="debrief"><i>05</i><span>Debrief</span></button>
+  </nav>
+
+  <div class="topbar-actions">
+    <button class="btn tiny ghost" id="btn-teacher" aria-pressed="false">Teacher view</button>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============================== 01 START ============================== -->
+  <section class="view view-brief" id="view-brief" data-view="brief" aria-labelledby="brief-h">
+    <div class="hero">
+      <img src="assets/img/hero.jpg" alt="Apollo 17 astronaut and lunar rover on the Moon, with hills on the horizon" class="hero-img">
+      <div class="hero-shade"></div>
+      <div class="hero-copy">
+        <p class="eyebrow light">A lunar rover lesson</p>
+        <h1 id="brief-h">Drive the Moon</h1>
+        <p class="hero-line">No roads. No map. One robot.</p>
+        <button class="btn primary big" data-go="starter">Start <span aria-hidden="true">→</span></button>
+      </div>
+      <p class="hero-credit">Apollo 17 · NASA</p>
+    </div>
+
+    <div class="question-list">
+      <article class="qrow">
+        <span class="qnum">01</span>
+        <div><h2>What is a rover?</h2><p>A robot on wheels that explores where people cannot go.</p></div>
+      </article>
+      <article class="qrow">
+        <span class="qnum">02</span>
+        <div><h2>What does it do?</h2><p>It drives, looks, takes photos and sends the data home.</p></div>
+      </article>
+      <article class="qrow">
+        <span class="qnum">03</span>
+        <div><h2>What makes it hard?</h2><p>No roads, no map, steep ground, rocks, heat and cold.</p></div>
+      </article>
+      <article class="qrow">
+        <span class="qnum">04</span>
+        <div><h2>What are sensors and AI?</h2><p>Sensors are its eyes. AI helps it choose what to do next.</p></div>
+      </article>
+      <article class="qrow">
+        <span class="qnum">05</span>
+        <div><h2>How can AI plan?</h2><p>It reads a map, spots the dangers and picks a safe path.</p></div>
+      </article>
+    </div>
+
+    <div class="brief-foot">
+      <p>Seven questions. One drive. One plan.</p>
+      <button class="btn primary" data-go="starter">Start the lesson <span aria-hidden="true">→</span></button>
+    </div>
+  </section>
+
+  <!-- ============================= 02 CHALLENGES ============================= -->
+  <section class="view view-starter" id="view-starter" data-view="starter" aria-labelledby="starter-h">
+    <header class="slide-head">
+      <p class="eyebrow">02 · Challenges</p>
+      <h2 id="starter-h">What makes driving on the Moon hard?</h2>
+      <p class="slide-lede">Pick the best answer. Every choice explains itself.</p>
+    </header>
+
+    <div class="quiz-grid">
+      <figure class="quiz-media" id="quiz-media">
+        <img id="quiz-img" src="assets/img/rover-parked.jpg" alt="">
+        <figcaption>
+          <span class="mono-label" id="quiz-imgtag">EVIDENCE 01</span>
+          <span id="quiz-caption">Apollo 15 lunar roving vehicle.</span>
+        </figcaption>
+        <div class="media-badge" id="quiz-badge">FIELD PHOTO</div>
+      </figure>
+
+      <div class="quiz-panel">
+        <div class="quiz-progress">
+          <span class="mono-label" id="quiz-count">Question 1 of 7</span>
+          <span class="quiz-score" id="quiz-score">0 correct</span>
+        </div>
+        <div class="qbar" aria-hidden="true"><div class="qbar-fill" id="quiz-bar"></div></div>
+        <h3 class="quiz-question" id="quiz-q">Loading…</h3>
+        <div class="quiz-options" id="quiz-options" role="group" aria-labelledby="quiz-q"></div>
+        <div class="quiz-feedback" id="quiz-feedback" aria-live="polite" hidden>
+          <div class="feedback-verdict" id="quiz-verdict"></div>
+          <p id="quiz-explain"></p>
+          <div class="challenge-unlock"><span class="mono-label">Challenge</span><strong id="quiz-challenge"></strong></div>
+        </div>
+        <div class="quiz-actions">
+          <span class="quiz-hint" id="quiz-hint">Press 1–4 to answer</span>
+          <button class="btn primary" id="quiz-next" disabled>Next <span aria-hidden="true">→</span></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== 03 DRIVE ============================== -->
+  <section class="view view-drive" id="view-drive" data-view="drive" aria-labelledby="drive-h">
+    <h2 id="drive-h" class="sr-only">Rover drive</h2>
+    <div class="ops-stage" id="ops-stage">
+      <canvas id="cam" aria-label="Live 3D view from the rover"></canvas>
+      <div class="ops-veil" aria-hidden="true"></div>
+
+      <div class="ops-hud">
+        <div class="hud-top">
+          <button class="hud-btn" data-go="starter"><span aria-hidden="true">←</span> Lesson</button>
+          <div class="hud-title"><span class="rec-dot" aria-hidden="true"></span> CAM 1 · NAV FORWARD</div>
+          <button class="hud-btn" id="btn-map" aria-pressed="false">Map</button>
+        </div>
+
+        <div class="hud-mission">
+          <span class="hud-stage" id="hud-stage">CHECKPOINT 1 OF 3</span>
+          <strong class="hud-dist" id="hud-dist">—</strong>
+          <span class="hud-turn" id="hud-turn">TURN 01</span>
+        </div>
+
+        <div class="hud-bars" id="hud-bars">
+          <div class="mbar" data-bar="power"><span>Power</span><i><b id="fill-power"></b></i><em id="val-power">100%</em></div>
+          <div class="mbar" data-bar="heat"><span>Heat</span><i><b id="fill-heat"></b></i><em id="val-heat">30 °C</em></div>
+          <div class="mbar" data-bar="wheels"><span>Wheels</span><i><b id="fill-wheels"></b></i><em id="val-wheels">100%</em></div>
+          <div class="mbar" data-bar="signal"><span>Signal</span><i><b id="fill-signal"></b></i><em id="val-signal">94%</em></div>
+        </div>
+
+        <div class="hud-command" id="hud-command">
+          <p class="cmd-q" id="cmd-q">Where should the rover go?</p>
+          <div class="opts" id="opts"></div>
+          <div class="cmd-tools">
+            <button class="chip" id="btn-scan" title="Map the ground nearby (costs 3% power)">Scan −3%</button>
+            <button class="chip" id="btn-reverse" title="Back up 24 m (costs 2% power)">Reverse</button>
+            <button class="chip" id="btn-restart">Restart</button>
+            <button class="chip" id="btn-autonav" hidden>Auto-nav</button>
+            <span class="cmd-delay">1.3 s delay</span>
+          </div>
+        </div>
+
+        <aside class="map-panel" id="map-panel" hidden aria-label="Rover map">
+          <div class="map-head">
+            <span>Rover map</span>
+            <button class="chip" id="btn-reveal" aria-pressed="false">Hazards</button>
+          </div>
+          <canvas id="minimap" width="360" height="240"></canvas>
+          <div class="map-legend">
+            <span><i class="sw sw-you"></i>Rover</span>
+            <span><i class="sw sw-goal"></i>Goal</span>
+            <span><i class="sw sw-known"></i>Driven</span>
+            <span><i class="sw sw-hazard"></i>Rock</span>
+          </div>
+          <ol class="log-list" id="log" aria-live="polite"></ol>
+        </aside>
+
+        <div class="ops-overlay" id="ops-overlay" hidden>
+          <div class="overlay-card" id="overlay-card"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== 04 PLAN ============================== -->
+  <section class="view view-recon" id="view-recon" data-view="recon" aria-labelledby="recon-h">
+    <header class="slide-head">
+      <p class="eyebrow">04 · Plan from orbit</p>
+      <h2 id="recon-h">See the ground before you drive it</h2>
+      <p class="slide-lede">Pick a site. Look at the 3D ground. Then draw a safe route from the landing point to the checkpoint.</p>
+    </header>
+
+    <div class="site-strip" id="site-cards" role="tablist" aria-label="Survey sites"></div>
+
+    <div class="recon-grid">
+      <div class="panel viewer">
+        <div class="viewer-head">
+          <div class="viewer-tabs" role="tablist" aria-label="Viewer mode">
+            <button class="vtab" data-mode="3d" role="tab" aria-selected="true">3D ground</button>
+            <button class="vtab" data-mode="plan" role="tab" aria-selected="false">Plan map</button>
+          </div>
+          <div class="viewer-meta mono-small" id="viewer-meta">Drag to orbit · scroll to zoom</div>
+        </div>
+        <div class="viewer-stage" id="viewer-stage">
+          <canvas id="tv" aria-label="3D terrain model"></canvas>
+          <canvas id="plan" class="is-hidden" aria-label="Top-down route planning map"></canvas>
+          <div class="viewer-hint" id="viewer-hint">Drag to orbit · scroll to zoom</div>
+          <div class="legend" id="viewer-legend">
+            <span><i class="sw sw-green"></i>&lt; 10°</span>
+            <span><i class="sw sw-amber"></i>10–15°</span>
+            <span><i class="sw sw-red"></i>&gt; 15°</span>
+            <span><i class="sw sw-psr"></i>No Sun</span>
+          </div>
+          <div class="viewer-badge" id="viewer-badge">SITE 04 · 3D RECONSTRUCTION</div>
+          <div class="shadow-inset">
+            <div class="si-label">Shadow map <span>bright = never sees the Sun</span></div>
+            <canvas id="shadow" width="128" height="128"></canvas>
+          </div>
+        </div>
+        <div class="viewer-tools">
+          <div class="tool-group" id="layer-buttons">
+            <span class="mono-label">Layer</span>
+            <button class="chip active" data-layer="slope">Slope</button>
+            <button class="chip" data-layer="photo">Photo</button>
+            <button class="chip" data-layer="shadow">No-Sun</button>
+          </div>
+          <div class="tool-group" id="preset-buttons">
+            <span class="mono-label">View</span>
+            <button class="chip" data-preset="approach">Approach</button>
+            <button class="chip" data-preset="top">Top-down</button>
+            <button class="chip" data-preset="orbit">Auto-orbit</button>
+          </div>
+          <div class="tool-group plan-only">
+            <span class="mono-label">Route</span>
+            <button class="chip" id="btn-undo">Undo</button>
+            <button class="chip" id="btn-clear">Clear</button>
+            <button class="chip" id="btn-demo">Demo</button>
+          </div>
+        </div>
+      </div>
+
+      <aside class="recon-side">
+        <div class="panel site-info" id="site-info"></div>
+
+        <div class="panel route-panel">
+          <div class="panel-head">
+            <span class="mono-label">Your route</span>
+            <span class="mono-small" id="plan-count">0 waypoints</span>
+          </div>
+          <div class="route-readout">
+            <div><span>Length</span><b id="r-length">—</b></div>
+            <div><span>Steepest</span><b id="r-slope">—</b></div>
+            <div><span>Risky</span><b id="r-risky">—</b></div>
+            <div><span>Energy</span><b id="r-energy">—</b></div>
+          </div>
+          <p class="route-coach" id="route-coach">Click the map to add waypoints. Start at the blue ring and finish inside the amber ring.</p>
+          <div class="route-actions">
+            <button class="btn primary full" id="btn-check" disabled>Check this route</button>
+            <button class="chip" id="btn-safe" hidden>Show surveyor's route</button>
+          </div>
+          <div class="verdict" id="verdict" hidden></div>
+        </div>
+
+        <details class="panel geotiff" id="geotiff">
+          <summary>Use your own survey data</summary>
+          <p class="mono-small">Load three GeoTIFF layers from a real site: height, slope and shadow.</p>
+          <label>1 · Height <span>surf.tif</span><input type="file" id="f-surf" accept=".tif,.tiff"></label>
+          <label>2 · Slope <span>slp.tif</span><input type="file" id="f-slp" accept=".tif,.tiff"></label>
+          <label>3 · Shadow <span>shd.tif</span><input type="file" id="f-shd" accept=".tif,.tiff"></label>
+          <button class="btn small" id="btn-build-tif">Build from files</button>
+          <p class="mono-small status" id="tif-status">Waiting for a height file.</p>
+        </details>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============================= 05 DEBRIEF ============================= -->
+  <section class="view view-debrief" id="view-debrief" data-view="debrief" aria-labelledby="debrief-h">
+    <header class="slide-head">
+      <p class="eyebrow">05 · Debrief</p>
+      <h2 id="debrief-h">What did you learn?</h2>
+      <p class="slide-lede">You met the hazards, drove blind, and planned a safe route from orbit.</p>
+    </header>
+
+    <div class="result-cards" id="result-cards"></div>
+
+    <div class="ideas">
+      <article class="idea">
+        <span class="idea-num">01</span>
+        <h3>The Moon is a hostile place to drive.</h3>
+        <p>Steep ground, sharp rocks, deep shadow and huge temperature swings all shape the mission.</p>
+      </article>
+      <article class="idea">
+        <span class="idea-num">02</span>
+        <h3>A good map is a superpower.</h3>
+        <p>Height shows the shape. Slope shows what is safe. Shadow shows where the Sun never reaches.</p>
+      </article>
+      <article class="idea">
+        <span class="idea-num">03</span>
+        <h3>AI is a helper, not a hero.</h3>
+        <p>People choose the goal. The rover checks the ground and picks its next few metres.</p>
+      </article>
+    </div>
+
+    <div class="debrief-grid">
+      <div class="panel teacher-notes">
+        <details>
+          <summary>Teacher notes &amp; answers</summary>
+          <div class="notes-body" id="teacher-notes">
+            <p class="mono-small">Full answers, timings and discussion prompts are in <code>README.md</code>. Use <b>Teacher view</b> in the header to reveal the quiz answers and the rover's hazard map.</p>
+            <ul>
+              <li><b>Challenges (5–8 min):</b> let students predict before revealing. Ask why the wrong answers seemed plausible.</li>
+              <li><b>Drive (8–12 min):</b> let students fail once. The hazard map then shows the safe corridor.</li>
+              <li><b>Plan (8–12 min):</b> ask students to explain a route before checking it, then compare with the surveyor's route.</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+
+      <div class="panel credits">
+        <details>
+          <summary>Image credits</summary>
+          <ul id="credits-list" class="credit-list"></ul>
+        </details>
+      </div>
+    </div>
+
+    <div class="debrief-actions">
+      <button class="btn primary" id="btn-print">Print / save summary</button>
+      <button class="btn ghost" data-go="brief">Start again</button>
+      <button class="btn ghost quiet" id="btn-reset">Reset progress</button>
+    </div>
+  </section>
+</main>
+
+<footer class="bottombar">
+  <button class="btn ghost nav-btn" id="btn-prev"><span aria-hidden="true">←</span> Back</button>
+  <div class="rail">
+    <div class="rail-labels" id="rail-labels"></div>
+    <div class="rail-track"><div class="rail-fill" id="rail-fill"></div></div>
+  </div>
+  <button class="btn primary nav-btn" id="btn-next">Next <span aria-hidden="true">→</span></button>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="vendor/three.min.js"></script>
+<script src="vendor/geotiff.js"></script>
+<script src="js/core.js"></script>
+<script src="js/sites.js"></script>
+<script src="js/quiz.js"></script>
+<script src="js/game.js"></script>
+<script src="js/terrainview.js"></script>
+<script src="js/recon.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
